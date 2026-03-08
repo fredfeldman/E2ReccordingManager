@@ -15,10 +15,18 @@ Successfully created a standalone Enigma2 Recording Manager application based on
 
 ### Dialogs
 - **StatusDialog.cs/.Designer.cs**: Progress dialog for long-running operations
-- **ConnectionDialog.cs/.Designer.cs**: Connection settings dialog
+- **ConnectionDialog.cs/.Designer.cs**: Enhanced connection settings dialog
+  - Profile dropdown selector
+  - Profile name field
+  - Save/Delete profile buttons
+  - Grouped layout with profile management and connection settings sections
 
 ### Utilities
 - **ConnectionProfileManager.cs**: Profile management for saving connection settings
+  - JSON-based storage in AppData folder
+  - CRUD operations for profiles
+  - Last profile tracking
+  - Automatic directory creation
 
 ### Documentation
 - **README.md**: User guide and documentation
@@ -32,6 +40,7 @@ Successfully created a standalone Enigma2 Recording Manager application based on
 
 ### 2. Recording List Management
 - Fetch recordings from device via OpenWebif API
+- **Automatic EIT file parsing** for EPG metadata
 - Display recordings in a sortable list view
 - Show recording details:
   - Title
@@ -40,6 +49,8 @@ Successfully created a standalone Enigma2 Recording Manager application based on
   - Duration
   - File size
   - File name
+- **Visual indication** of recordings with EPG data (green color)
+- **Enhanced tooltips** with full EPG descriptions
 
 ### 3. Recording Operations
 - **Refresh**: Load/reload recording list from device
@@ -72,24 +83,65 @@ Successfully created a standalone Enigma2 Recording Manager application based on
 - .NET 8.0 Windows Forms
 - HttpClient for API communication
 - XDocument for XML parsing
+- **Binary parsing for EIT files**
 - Async/await for non-blocking operations
 
 ### API Endpoints Used
 - `/web/about` - Device information and connection test
 - `/web/movielist` - Retrieve recording list
-- `/file?file=<path>` - Download recording files
+- `/file?file=<path>` - Download recording files **and EIT files**
 - `/web/moviedelete?sRef=<reference>` - Delete recordings
 
 ## Usage Flow
 
-1. User clicks "Connect" and enters device credentials
-2. Application connects to Enigma2 device via OpenWebif
-3. User clicks "Refresh" to load recordings
-4. Application fetches and parses recording list
+1. User launches application
+2. Application loads last used profile from AppData
+3. User clicks "Connect"
+4. Connection dialog opens with:
+   - Last used profile pre-selected
+   - All saved profiles available in dropdown
+   - Option to create new profile or modify existing
 5. User can:
+   - Select existing profile and connect
+   - Create new profile (enter name, save, then connect)
+   - Edit existing profile (select, modify, save, connect)
+   - Delete unwanted profiles
+6. User connects to selected device
+7. Application saves the profile (if new/modified) and marks it as last used
+8. User clicks "Refresh" to load recordings
+9. Application fetches and parses recording list
+10. User can:
    - View recording details
    - Download recordings to local storage
    - Delete recordings from device
+
+## Profile Storage
+
+### Location
+- Windows: `%AppData%\E2RecordingManager\`
+- Files:
+  - `connections.json` - All saved profiles
+  - `lastprofile.txt` - Name of last used profile
+
+### Profile Data Structure
+```json
+[
+  {
+    "Name": "Living Room VU+",
+    "Host": "192.168.1.100",
+    "Port": 80,
+    "Username": "root",
+    "Password": "password123"
+  },
+  {
+    "Name": "Bedroom Dreambox",
+    "Host": "192.168.1.101",
+    "Port": 80,
+    "Username": "root",
+    "Password": "password456"
+  }
+]
+```
 
 ## Future Enhancement Possibilities
 

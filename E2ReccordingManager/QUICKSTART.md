@@ -7,16 +7,52 @@
 - You'll see the main window with a toolbar and empty recording list
 
 ### Step 2: Connect to Your Device
+
+#### First Time Setup (New Profile)
 1. Click the **Connect** button in the toolbar
-2. In the connection dialog, enter:
-   ```
-   Host: 192.168.1.xxx (your device IP)
-   Port: 80
-   Username: root
-   Password: (your device password)
-   ```
-3. Click **Connect**
-4. You should see "Connected to [your IP]" in the toolbar
+2. In the connection dialog, you'll see Profile Management and Connection Settings
+3. Create your first profile:
+   - **Profile Name**: Enter a name (e.g., "Living Room VU+")
+   - **Host**: 192.168.1.xxx (your device IP)
+   - **Port**: 80
+   - **Username**: root
+   - **Password**: (your device password)
+4. Click **Save Profile** to save these settings
+5. Click **Connect** to connect to the device
+
+#### Connecting to a Saved Profile
+1. Click the **Connect** button
+2. Select your device from the "Load Profile" dropdown
+3. The settings will auto-fill
+4. Click **Connect**
+5. You should see "Connected to [your IP]" in the toolbar
+
+### Managing Multiple Devices
+
+#### Adding Another Device
+1. Click **Connect**
+2. Enter a new profile name (e.g., "Bedroom Dreambox")
+3. Enter that device's connection details
+4. Click **Save Profile**
+5. The new profile is now available in the dropdown
+
+#### Switching Between Devices
+1. Click **Disconnect** (if currently connected)
+2. Click **Connect**
+3. Select a different profile from the dropdown
+4. Click **Connect**
+
+#### Editing a Profile
+1. Click **Connect**
+2. Select the profile from the dropdown
+3. Modify the connection settings
+4. Click **Save Profile** (confirm overwrite if prompted)
+
+#### Deleting a Profile
+1. Click **Connect**
+2. Select the profile you want to delete
+3. Click **Delete Profile**
+4. Confirm the deletion
 
 ### Step 3: Load Recordings
 1. Click the **Refresh** button

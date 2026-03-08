@@ -11,13 +11,16 @@ namespace E2ReccordingManager.Models
         public int DurationSeconds { get; set; }
         public string FileName { get; set; } = string.Empty;
         public long FileSizeBytes { get; set; }
-        
+
         public string EITTitle { get; set; } = string.Empty;
         public string EITShortDescription { get; set; } = string.Empty;
         public string EITExtendedDescription { get; set; } = string.Empty;
         public bool HasEITData { get; set; }
         public DateTime EITStartTime { get; set; }
         public int EITDuration { get; set; }
+
+        public bool IsLocalFile { get; set; }
+        public string? LocalFilePath { get; set; }
         
         public string FormattedSize
         {
